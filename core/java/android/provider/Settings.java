@@ -5913,13 +5913,13 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
-         * Whether to display status area (date & weather information) with the typographic clock
+         * Whether to display status area (date & weather information) with the  clock
          * @hide
          */
-        public static final String TYPE_CLOCK_SHOW_STATUS_AREA = "type_clock_show_status_area";
+        public static final String CLOCK_SHOW_STATUS_AREA = "clock_show_status_area";
 
         /** @hide */
-        private static final Validator TYPE_CLOCK_SHOW_STATUS_AREA_VALIDATOR =
+        private static final Validator CLOCK_SHOW_STATUS_AREA_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
         /**
@@ -6126,6 +6126,7 @@ public final class Settings {
             STATUS_BAR_TICKER_ANIMATION_MODE,
             STATUS_BAR_TICKER_TICK_DURATION,
             QS_RUNNING_SERVICES_TOGGLE,
+            CLOCK_SHOW_STATUS_AREA,
         };
 
         /**
@@ -6343,7 +6344,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_TICKER);
             PRIVATE_SETTINGS.add(STATUS_BAR_TICKER_ANIMATION_MODE);
             PRIVATE_SETTINGS.add(STATUS_BAR_TICKER_TICK_DURATION);
-            PRIVATE_SETTINGS.add(TYPE_CLOCK_SHOW_STATUS_AREA);
+            PRIVATE_SETTINGS.add(CLOCK_SHOW_STATUS_AREA);
         }
 
         /**
@@ -6588,7 +6589,7 @@ public final class Settings {
                     STATUS_BAR_TICKER_ANIMATION_MODE_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_TICKER_TICK_DURATION,
                     STATUS_BAR_TICKER_TICK_DURATION_VALIDATOR);
-            VALIDATORS.put(TYPE_CLOCK_SHOW_STATUS_AREA, TYPE_CLOCK_SHOW_STATUS_AREA_VALIDATOR);
+            VALIDATORS.put(CLOCK_SHOW_STATUS_AREA, CLOCK_SHOW_STATUS_AREA_VALIDATOR);
             VALIDATORS.put(QS_RUNNING_SERVICES_TOGGLE, QS_RUNNING_SERVICES_TOGGLE_VALIDATOR);
         }
 

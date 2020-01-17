@@ -18,12 +18,14 @@ package com.android.keyguard.clock;
 
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -49,18 +51,22 @@ public class BinaryClock extends View {
     private int[][] mDots = new int[4][4];
     private TimeZone mTimeZone;
     private String mDescFormat;
+    private Context mContext;
 
     public BinaryClock(Context context) {
         this(context, null);
+        mContext = context;
     }
 
     public BinaryClock(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        mContext = context;
     }
 
     public BinaryClock(Context context, AttributeSet attrs,
                        int defStyle) {
         super(context, attrs, defStyle);
+        mContext = context;
         Resources r = context.getResources();
 
         mDotPaint = new Paint();
@@ -198,5 +204,9 @@ public class BinaryClock extends View {
     public void refreshTime() {
         onTimeChanged();
         invalidate();
+    }
+
+    public boolean showStatusArea() {
+        return Settings.System.getInt(mContext.getContentResolver(), Settings.System.CLOCK_SHOW_STATUS_AREA, 0) == 1;
     }
 }
