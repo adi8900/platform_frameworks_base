@@ -153,7 +153,7 @@ public class TypographicClock extends TextView {
     }
 
     public boolean showStatusArea() {
-        return Settings.System.getInt(mContext.getContentResolver(), Settings.System.TYPE_CLOCK_SHOW_STATUS_AREA, 1) == 1;
+        return Settings.System.getInt(mContext.getContentResolver(), Settings.System.CLOCK_SHOW_STATUS_AREA, 0) == 1;
     }
 
     private int getLockClockFont() {

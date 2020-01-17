@@ -16,6 +16,8 @@
 package com.android.keyguard.clock;
 
 import android.content.Context;
+import android.content.ContentResolver;
+import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
@@ -40,17 +42,21 @@ public class ImageClock extends FrameLayout {
     private final Calendar mTime = Calendar.getInstance(TimeZone.getDefault());
     private String mDescFormat;
     private TimeZone mTimeZone;
+    private Context mContext;
 
     public ImageClock(Context context) {
         this(context, null);
+        mContext = context;
     }
 
     public ImageClock(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        mContext = context;
     }
 
     public ImageClock(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mContext = context;
         mDescFormat = ((SimpleDateFormat) DateFormat.getTimeFormat(context)).toLocalizedPattern();
     }
 
@@ -99,5 +105,9 @@ public class ImageClock extends FrameLayout {
         super.onAttachedToWindow();
         mTime.setTimeZone(mTimeZone != null ? mTimeZone : TimeZone.getDefault());
         onTimeChanged();
+    }
+
+    public boolean showStatusArea() {
+        return Settings.System.getInt(mContext.getContentResolver(), Settings.System.CLOCK_SHOW_STATUS_AREA, 0) == 1;
     }
 }
