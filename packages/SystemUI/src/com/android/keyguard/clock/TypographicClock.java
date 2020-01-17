@@ -15,8 +15,11 @@
  */
 package com.android.keyguard.clock;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.graphics.Typeface;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -36,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
+
 /**
  * Clock that presents the time in words.
  */
@@ -51,19 +55,23 @@ public class TypographicClock extends TextView {
     private final Calendar mTime = Calendar.getInstance(TimeZone.getDefault());
     private String mDescFormat;
     private TimeZone mTimeZone;
+    private Context mContext;
 
     private boolean h24;
 
     public TypographicClock(Context context) {
         this(context, null);
+        mContext = context;
     }
 
     public TypographicClock(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        mContext = context;
     }
 
     public TypographicClock(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mContext = context;
         mDescFormat = ((SimpleDateFormat) DateFormat.getTimeFormat(context)).toLocalizedPattern();
         mResources = context.getResources();
         h24 = DateFormat.is24HourFormat(getContext());
@@ -143,6 +151,10 @@ public class TypographicClock extends TextView {
     @Override
     public boolean hasOverlappingRendering() {
         return false;
+    }
+
+    public boolean showStatusArea() {
+        return Settings.System.getIntForUser(mContext.getContentResolver(), Settings.System.TYPE_CLOCK_SHOW_STATUS_AREA, 1, UserHandle.USER_CURRENT) == 1;
     }
 
     private int getLockClockFont() {
