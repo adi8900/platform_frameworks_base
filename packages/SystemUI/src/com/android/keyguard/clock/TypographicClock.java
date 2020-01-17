@@ -18,7 +18,6 @@ package com.android.keyguard.clock;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.UserHandle;
 import android.provider.Settings;
 import android.graphics.Typeface;
 import android.os.UserHandle;
@@ -154,7 +153,7 @@ public class TypographicClock extends TextView {
     }
 
     public boolean showStatusArea() {
-        return Settings.System.getIntForUser(mContext.getContentResolver(), Settings.System.TYPE_CLOCK_SHOW_STATUS_AREA, 1, UserHandle.USER_CURRENT) == 1;
+        return Settings.System.getInt(mContext.getContentResolver(), Settings.System.TYPE_CLOCK_SHOW_STATUS_AREA, 1) == 1;
     }
 
     private int getLockClockFont() {
