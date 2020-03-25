@@ -224,4 +224,10 @@
     <dimen name="custom_clock_left_padding">55dp</dimen>
     <dimen name="custom_clock_top_margin">80dp</dimen>
 
+    <!-- The margin between the pattern view and the Emergency Carrier area -->
+    <dimen name="pattern_view_bottom_margin">4dp</dimen>
+
+    <!-- The margin between the pin view and the Emergency Carrier area -->
+    <dimen name="pin_view_bottom_margin">0dp</dimen>
+
 </resources>
